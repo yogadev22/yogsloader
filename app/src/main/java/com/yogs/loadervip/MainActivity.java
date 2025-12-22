@@ -85,8 +85,7 @@ public class MainActivity extends Activity {
             });
 
             menugl1.setOnClickListener(view -> {
-                ApkEnv.getInstance().launchApk("com.tencent.ig");
-                //Overlay.Shell("chmod 777 " + MainActivity.this.getFilesDir() + "/sock64");
+                BlackBoxCore.get().launchApk("com.tencent.ig", 0);
                 startService(new Intent(MainActivity.this, FloatLogo.class));
             });
         } catch (Exception e) {
@@ -95,13 +94,13 @@ public class MainActivity extends Activity {
     }
 
     private void installanduninstall() {
-        if (ApkEnv.getInstance().isInstalled("com.tencent.ig")) {
-            ApkEnv.getInstance().unInstallApp("com.tencent.ig");
+        if (BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
+            BlackBoxCore.get().uninstallPackageAsUser("com.tencent.ig", 0);
             Toast.makeText(MainActivity.this, "Pubg Global Uninstalled", Toast.LENGTH_SHORT).show();
         } else {
-            ApkEnv.getInstance().installByPackage("com.tencent.ig");
+            InstallResult installResult = BlackBoxCore.get().installPackageAsUser("com.tencent.ig", 0);
 
-            if (!ApkEnv.getInstance().isInstalled("com.tencent.ig"))
+            if (!installResult.success || !BlackBoxCore.get().isInstalled("com.tencent.ig", 0))
                 return;
 
             Toast.makeText(MainActivity.this, "Pubg Global Installed", Toast.LENGTH_SHORT).show();
