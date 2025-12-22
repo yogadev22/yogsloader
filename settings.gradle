@@ -1,2 +1,3 @@
 rootProject.name = "yogs loader"
 include ':app'
+include ':Bcore'

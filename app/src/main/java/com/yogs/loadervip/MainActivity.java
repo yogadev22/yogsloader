@@ -75,10 +75,14 @@ public class MainActivity extends Activity {
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
-            //daemon64 = this.getFilesDir() + "/sock64";
+            daemon64 = this.getFilesDir() + "/sock64";
+
+            updateState(menugl);
 
             menugl.setOnClickListener(view -> {
-                installanduninstall();
+                if (installanduninstall()) {
+                    updateState(menugl);
+                }
             });
 
             menugl1.setOnClickListener(view -> {
@@ -90,17 +94,26 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void installanduninstall() {
+    private boolean installanduninstall() {
         if (BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
             BlackBoxCore.get().uninstallPackageAsUser("com.tencent.ig", 0);
             Toast.makeText(MainActivity.this, "Pubg Global Uninstalled", Toast.LENGTH_SHORT).show();
+            return true;
         } else {
             InstallResult installResult = BlackBoxCore.get().installPackageAsUser("com.tencent.ig", 0);
+            if (installResult.success || !BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
+                Toast.makeText(MainActivity.this, "Pubg Global Installed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        }
+        return false;
+    }
 
-            if (!installResult.success || !BlackBoxCore.get().isInstalled("com.tencent.ig", 0))
-                return;
-
-            Toast.makeText(MainActivity.this, "Pubg Global Installed", Toast.LENGTH_SHORT).show();
+    private void updateState(Button haha) {
+        if (BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
+            haha.setText("UNINSTALL");
+        } else {
+            haha.setText("INSTALL");
         }
     }
 

@@ -69,7 +69,7 @@
             android:id="@+id/menugl"
             android:layout_width="90dp"
             android:layout_height="43dp"
-            android:text="MENU"
+            android:text="INSTALL"
             android:textSize="13sp"/>
 
         <Button
