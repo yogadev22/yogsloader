@@ -4,12 +4,12 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import black.com.android.internal.net.VpnConfig;
-import com.vcore.BlackBoxCore;
-import com.vcore.app.BActivityThread;
-import com.vcore.fake.hook.MethodHook;
-import com.vcore.fake.hook.ProxyMethod;
-import com.vcore.proxy.ProxyVpnService;
-import com.vcore.utils.MethodParameterUtils;
+import top.niunaijun.blackbox.BlackBoxCore;
+import top.niunaijun.blackbox.app.BActivityThread;
+import top.niunaijun.blackbox.fake.hook.MethodHook;
+import top.niunaijun.blackbox.fake.hook.ProxyMethod;
+import top.niunaijun.blackbox.proxy.ProxyVpnService;
+import top.niunaijun.blackbox.utils.MethodParameterUtils;
 
 public class VpnCommonProxy {
     @ProxyMethod("setVpnPackageAuthorization")

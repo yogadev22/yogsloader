@@ -9,8 +9,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.vcore.BlackBoxCore;
-import com.vcore.utils.compat.BuildCompat;
+import top.niunaijun.blackbox.BlackBoxCore;
+import top.niunaijun.blackbox.utils.compat.BuildCompat;
 
 public class DaemonService extends Service {
     public static final String TAG = "DaemonService";
