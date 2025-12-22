@@ -991,6 +991,9 @@ public class BlackBoxCore extends ClientConfiguration {
             }
         }
         
+        // Initialize VPN service for internet access
+        initVpnService();
+        
         HookManager.get().init();
     }
 
@@ -1605,6 +1608,41 @@ public class BlackBoxCore extends ClientConfiguration {
             }
         } catch (Exception e) {
             Slog.w(TAG, "Failed to set essential properties: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Initialize VPN service for internet access
+     */
+    private void initVpnService() {
+        try {
+            // Start the VPN service asynchronously to prevent blocking main thread
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Start the VPN service to ensure internet access works
+                        Intent vpnIntent = new Intent(getContext(), top.niunaijun.blackbox.proxy.ProxyVpnService.class);
+                        vpnIntent.setAction("android.net.VpnService");
+                        
+                        if (BuildCompat.isOreo()) {
+                            getContext().startForegroundService(vpnIntent);
+                        } else {
+                            getContext().startService(vpnIntent);
+                        }
+                        
+                        Slog.d(TAG, "VPN service started successfully for internet access");
+                    } catch (Exception e) {
+                        Slog.w(TAG, "Failed to start VPN service: " + e.getMessage());
+                        // Don't fail initialization if VPN service fails
+                        // The app can still work without VPN, just with limited network access
+                    }
+                }
+            }, "VPNServiceInit").start();
+            
+        } catch (Exception e) {
+            Slog.w(TAG, "Failed to initialize VPN service: " + e.getMessage());
+            // Don't fail initialization if VPN service fails
         }
     }
     

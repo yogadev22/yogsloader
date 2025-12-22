@@ -3,21 +3,17 @@ package top.niunaijun.blackbox.fake.service;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import black.com.android.internal.net.BRVpnConfig;
-import black.com.android.internal.net.VpnConfigContext;
-import top.niunaijun.blackbox.BlackBoxCore;
-import top.niunaijun.blackbox.app.BActivityThread;
-import top.niunaijun.blackbox.fake.hook.MethodHook;
-import top.niunaijun.blackbox.fake.hook.ProxyMethod;
-import top.niunaijun.blackbox.proxy.ProxyVpnService;
-import top.niunaijun.blackbox.utils.MethodParameterUtils;
+import black.com.android.internal.net.VpnConfig;
+import com.vcore.BlackBoxCore;
+import com.vcore.app.BActivityThread;
+import com.vcore.fake.hook.MethodHook;
+import com.vcore.fake.hook.ProxyMethod;
+import com.vcore.proxy.ProxyVpnService;
+import com.vcore.utils.MethodParameterUtils;
 
-/**
- * Created by BlackBox on 2022/2/26.
- */
 public class VpnCommonProxy {
     @ProxyMethod("setVpnPackageAuthorization")
-    public static class setVpnPackageAuthorization extends MethodHook {
+    public static class SetVpnPackageAuthorization extends MethodHook {
 
         @Override
         protected Object hook(Object who, Method method, Object[] args) throws Throwable {
@@ -37,25 +33,25 @@ public class VpnCommonProxy {
     }
 
     @ProxyMethod("establishVpn")
-    public static class establishVpn extends MethodHook {
+    public static class EstablishVpn extends MethodHook {
 
         @Override
         protected Object hook(Object who, Method method, Object[] args) throws Throwable {
-            VpnConfigContext vpnConfigContext = BRVpnConfig.get(args[0]);
-            vpnConfigContext._set_user(ProxyVpnService.class.getName());
+            VpnConfig.user.set(args[0], ProxyVpnService.class.getName());
 
-            handlePackage(vpnConfigContext.allowedApplications());
-            handlePackage(vpnConfigContext.disallowedApplications());
+            handlePackage(VpnConfig.allowedApplications.get());
+            handlePackage(VpnConfig.disallowedApplications.get());
             return method.invoke(who, args);
         }
 
         private void handlePackage(List<String> applications) {
-            if (applications == null)
+            if (applications == null) {
                 return;
+            }
+
             if (applications.contains(BActivityThread.getAppPackageName())) {
                 applications.add(BlackBoxCore.getHostPkg());
             }
         }
     }
-
 }
