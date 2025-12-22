@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+	<style name="PKSwitch1" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#FFFFFF</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#FFFFFF</item>
+    </style>
+
+	<style name="PKSwitch2" parent="Theme.AppCompat.Light">
+		<item name="colorControlActivated">#0cf5c6</item>
+		<!-- inactive thumb color -->
+		<item name="colorSwitchThumbNormal">#FFFFFF</item>
+		<!-- inactive track color (30% transparency) -->
+		<item name="android:colorForeground">#FFFFFF</item>
+    </style>
+
+	<style name="PKSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#0cf5c6</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <!-- inactive track color (50% transparency) -->
+        <item name="android:colorForeground">#FFFFFF</item>
+    </style>
+</resources>
+
