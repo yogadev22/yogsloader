@@ -76,11 +76,11 @@ public class MainActivity extends Activity {
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
-            updateState(menugl);
+            updateState(menugl, "com.tencent.ig");
 
             menugl.setOnClickListener(view -> {
                 if (installanduninstall("com.tencent.ig")) {
-                    updateState(menugl);
+                    updateState(menugl, "com.tencent.ig");
                 }
             });
 
@@ -96,11 +96,11 @@ public class MainActivity extends Activity {
             Button menukr = findViewById(R.id.menukr);
             Button menukr1 = findViewById(R.id.menukr1);
 
-            updateState(menukr);
+            updateState(menukr, "com.pubg.krmobile");
 
             menukr.setOnClickListener(view -> {
                 if (installanduninstall("com.pubg.krmobile")) {
-                    updateState(menukr);
+                    updateState(menukr, "com.pubg.krmobile");
                 }
             });
 
@@ -113,14 +113,14 @@ public class MainActivity extends Activity {
                 }
             });
 
-            Button menutw = findViewById(R.id.menukr);
-            Button menutw1 = findViewById(R.id.menukr1);
+            Button menutw = findViewById(R.id.menutw);
+            Button menutw1 = findViewById(R.id.menutw1);
 
-            updateState(menutw);
+            updateState(menutw, "com.rekoo.pubgm");
 
             menutw.setOnClickListener(view -> {
                 if (installanduninstall("com.rekoo.pubgm")) {
-                    updateState(menutw);
+                    updateState(menutw, "com.rekoo.pubgm");
                 }
             });
 
@@ -136,11 +136,11 @@ public class MainActivity extends Activity {
             Button menuvng = findViewById(R.id.menuvng);
             Button menuvng1 = findViewById(R.id.menuvng1);
 
-            updateState(menuvng);
+            updateState(menuvng, "com.vng.pubgmobile");
 
             menuvng.setOnClickListener(view -> {
                 if (installanduninstall("com.vng.pubgmobile")) {
-                    updateState(menuvng);
+                    updateState(menuvng, "com.vng.pubgmobile");
                 }
             });
 
@@ -185,8 +185,8 @@ public class MainActivity extends Activity {
         return false;
     }
 
-    private void updateState(Button haha) {
-        if (BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
+    private void updateState(Button haha, String packagename) {
+        if (BlackBoxCore.get().isInstalled(packagename, 0)) {
             haha.setText("UNINSTALL");
         } else {
             haha.setText("INSTALL");
