@@ -7,7 +7,7 @@ ESP espOverlay;
 int type = 1, utype = 2;
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_Overlay_DrawOn(JNIEnv * env, jclass, jobject espView, jobject canvas) {
+Java_com_yogs_loadervip_Overlay_DrawOn(JNIEnv * env, jclass, jobject espView, jobject canvas) {
 	espOverlay = ESP(env, espView, canvas);
 	if (espOverlay.isValid()) {
 		DrawESP(espOverlay, espOverlay.getWidth(), espOverlay.getHeight());
@@ -15,17 +15,17 @@ Java_com_starkskillz_pubg_Overlay_DrawOn(JNIEnv * env, jclass, jobject espView, 
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_starkskillz_pubg_MainActivity_TELEGRAM(JNIEnv * env, jobject thiz) {
+Java_com_yogs_loadervip_MainActivity_TELEGRAM(JNIEnv * env, jobject thiz) {
 	return env->NewStringUTF(OBFUSCATE("https://t.me/SkillzShooter"));
 }
 
 extern "C" JNIEXPORT void JNICALL 
-Java_com_starkskillz_pubg_Overlay_Close(JNIEnv *, jobject) {
+Java_com_yogs_loadervip_Overlay_Close(JNIEnv *, jobject) {
 	Close();
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_SettingValue(JNIEnv *, jobject, jint code, jboolean jboolean1) {
+Java_com_yogs_loadervip_FloatLogo_SettingValue(JNIEnv *, jobject, jint code, jboolean jboolean1) {
 	switch ((int)code) {
 	case 2:
 		isPlayerTeamID = jboolean1;
@@ -88,7 +88,7 @@ Java_com_starkskillz_pubg_FloatLogo_SettingValue(JNIEnv *, jobject, jint code, j
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_SettingMemory(JNIEnv *, jobject, jint code, jboolean is_true) {
+Java_com_yogs_loadervip_FloatLogo_SettingMemory(JNIEnv *, jobject, jint code, jboolean is_true) {
 	switch ((int)code) {
 	case 1:
 		request.memory.LessRecoil = is_true;
@@ -115,7 +115,7 @@ Java_com_starkskillz_pubg_FloatLogo_SettingMemory(JNIEnv *, jobject, jint code, 
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_SettingValueI(JNIEnv *, jobject, jint code, jint number) {
+Java_com_yogs_loadervip_FloatLogo_SettingValueI(JNIEnv *, jobject, jint code, jint number) {
 	switch ((int)code) {
 	case 1:
 		isPlayerBox = number;
@@ -127,7 +127,7 @@ Java_com_starkskillz_pubg_FloatLogo_SettingValueI(JNIEnv *, jobject, jint code, 
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatAim_AimbotFOV(JNIEnv *, jclass, jboolean isTrue)
+Java_com_yogs_loadervip_FloatAim_AimbotFOV(JNIEnv *, jclass, jboolean isTrue)
 {
 	if (isTrue)
 		options.openState = 0;
@@ -137,61 +137,61 @@ Java_com_starkskillz_pubg_FloatAim_AimbotFOV(JNIEnv *, jclass, jboolean isTrue)
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_AimingSpeed(JNIEnv *env, jobject thiz, jint aimingspeed) {
+Java_com_yogs_loadervip_FloatLogo_AimingSpeed(JNIEnv *env, jobject thiz, jint aimingspeed) {
     options.touchSpeed = aimingspeed;
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_Smoothness(JNIEnv *env, jobject thiz, jint smoothness) {
+Java_com_yogs_loadervip_FloatLogo_Smoothness(JNIEnv *env, jobject thiz, jint smoothness) {
     options.Smoothing = smoothness;
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_TouchSize(JNIEnv *env, jobject thiz, jint touchsize) {
+Java_com_yogs_loadervip_FloatLogo_TouchSize(JNIEnv *env, jobject thiz, jint touchsize) {
     options.touchSize = touchsize;
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_TouchPosX(JNIEnv *env, jobject thiz, jint touchposx) {
+Java_com_yogs_loadervip_FloatLogo_TouchPosX(JNIEnv *env, jobject thiz, jint touchposx) {
     options.touchX = touchposx;
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_TouchPosY(JNIEnv *env, jobject thiz, jint touchposy) {
+Java_com_yogs_loadervip_FloatLogo_TouchPosY(JNIEnv *env, jobject thiz, jint touchposy) {
     options.touchY = touchposy;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_WideView(JNIEnv *, jobject, jint view) {
+Java_com_yogs_loadervip_FloatLogo_WideView(JNIEnv *, jobject, jint view) {
 	options.wideView = view;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_Range(JNIEnv *, jobject, jint range) {
+Java_com_yogs_loadervip_FloatLogo_Range(JNIEnv *, jobject, jint range) {
 	options.aimingRange = 1 + range;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_Recoil(JNIEnv *, jobject, jint range) {
+Java_com_yogs_loadervip_FloatLogo_Recoil(JNIEnv *, jobject, jint range) {
 	options.aimingRecoil = range;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_Target(JNIEnv *, jobject, jint target) {
+Java_com_yogs_loadervip_FloatLogo_Target(JNIEnv *, jobject, jint target) {
 	options.aimbotmode = target;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_starkskillz_pubg_FloatLogo_AimBy(JNIEnv *, jobject, jint aimby) {
+Java_com_yogs_loadervip_FloatLogo_AimBy(JNIEnv *, jobject, jint aimby) {
 	options.priority = aimby;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_com_starkskillz_pubg_Overlay_getReady(JNIEnv *, jobject) {
+Java_com_yogs_loadervip_Overlay_getReady(JNIEnv *, jobject) {
 	int sockCheck = 1;
 	if (!Create()) {
 		perror("Creation failed");
