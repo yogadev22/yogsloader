@@ -188,7 +188,7 @@ public class MainActivity extends Activity {
     private void updateState(Button haha, String packagename) {
         if (BlackBoxCore.get().isInstalled(packagename, 0)) {
             haha.setText("UNINSTALL");
-        } else {
+        } else if (!BlackBoxCore.get().isInstalled(packagename, 0)){
             haha.setText("INSTALL");
         }
     }
