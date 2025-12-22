@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.yogs.loadervip'
-    compileSdk 35
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.yogs.loadervip"
         minSdk 26
-        targetSdk 35
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -39,7 +39,7 @@ android {
             path file('src/main/jni/Android.mk')
         }
     }
-    ndkVersion = '22.0.7026061'
+    ndkVersion = '24.0.8215888'
 }
 
 dependencies {

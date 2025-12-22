@@ -72,9 +72,6 @@ public class MainActivity extends Activity {
                 requestUnknownAppPermissionsDirect();
             }
 
-            preferences = this.getSharedPreferences("install_status", this.MODE_PRIVATE);
-
-            TextView apkStatus = findViewById(R.id.apkstatus);
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
