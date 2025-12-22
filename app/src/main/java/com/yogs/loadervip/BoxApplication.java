@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.google.android.material.color.DynamicColors;
+import com.topjohnwu.superuser.Shell;
+
 import java.io.IOException;
 
 
@@ -18,12 +20,14 @@ public class BoxApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        try {
+
+        if (!Shell.rootAccess()) {
             BlackBoxCore.get().doAttachBaseContext(base, new ClientConfiguration() {
                 @Override
                 public String getHostPackageName() {
                     return base.getPackageName();
                 }
+
                 @Override
                 public boolean isHideRoot() {
                     return true;
@@ -35,12 +39,10 @@ public class BoxApplication extends Application {
                 }
 
                 @Override
-                public boolean isEnableDaemonService(){
+                public boolean isEnableDaemonService() {
                     return true;
                 }
             });
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -48,6 +50,8 @@ public class BoxApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        BlackBoxCore.get().doCreate();
+        if (!Shell.rootAccess()) {
+            BlackBoxCore.get().doCreate();
+        }
     }
 }

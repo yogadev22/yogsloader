@@ -36,6 +36,8 @@ import org.lsposed.lsparanoid.Obfuscate;
 
 import java.io.File;
 
+import com.topjohnwu.superuser.Shell;
+
 import top.niunaijun.blackbox.BlackBoxCore;
 import top.niunaijun.blackbox.app.configuration.ClientConfiguration;
 import top.niunaijun.blackbox.entity.pm.InstallResult;
@@ -85,7 +87,9 @@ public class MainActivity extends Activity {
             });
 
             menugl1.setOnClickListener(view -> {
-                BlackBoxCore.get().launchApk("com.tencent.ig", 0);
+                if (!Shell.rootAccess())
+                    BlackBoxCore.get().launchApk("com.tencent.ig", 0);
+
                 if (!isServiceRunning()) {
                     startService(new Intent(MainActivity.this, FloatLogo.class));
                 } else {
@@ -105,7 +109,9 @@ public class MainActivity extends Activity {
             });
 
             menukr1.setOnClickListener(view -> {
-                BlackBoxCore.get().launchApk("com.pubg.krmobile", 0);
+                if (!Shell.rootAccess())
+                    BlackBoxCore.get().launchApk("com.pubg.krmobile", 0);
+
                 if (!isServiceRunning()) {
                     startService(new Intent(MainActivity.this, FloatLogo.class));
                 } else {
@@ -125,7 +131,9 @@ public class MainActivity extends Activity {
             });
 
             menutw1.setOnClickListener(view -> {
-                BlackBoxCore.get().launchApk("com.rekoo.pubgm", 0);
+                if (!Shell.rootAccess())
+                    BlackBoxCore.get().launchApk("com.rekoo.pubgm", 0);
+
                 if (!isServiceRunning()) {
                     startService(new Intent(MainActivity.this, FloatLogo.class));
                 } else {
@@ -145,7 +153,9 @@ public class MainActivity extends Activity {
             });
 
             menuvng1.setOnClickListener(view -> {
-                BlackBoxCore.get().launchApk("com.vng.pubgmobile", 0);
+                if (!Shell.rootAccess())
+                    BlackBoxCore.get().launchApk("com.vng.pubgmobile", 0);
+
                 if (!isServiceRunning()) {
                     startService(new Intent(MainActivity.this, FloatLogo.class));
                 } else {
@@ -186,10 +196,15 @@ public class MainActivity extends Activity {
     }
 
     private void updateState(Button haha, String packagename) {
-        if (BlackBoxCore.get().isInstalled(packagename, 0)) {
-            haha.setText("UNINSTALL");
-        } else if (!BlackBoxCore.get().isInstalled(packagename, 0)){
-            haha.setText("INSTALL");
+        if (Shell.rootAccess()) {
+            haha.setVisibility(View.GONE);
+        } else {
+            haha.setVisibility(View.VISIBLE);
+            if (BlackBoxCore.get().isInstalled(packagename, 0)) {
+                haha.setText("UNINSTALL");
+            } else if (!BlackBoxCore.get().isInstalled(packagename, 0)) {
+                haha.setText("INSTALL");
+            }
         }
     }
 
