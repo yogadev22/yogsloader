@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
-            daemon64 = this.getFilesDir() + "/sock64";
+            //daemon64 = this.getFilesDir() + "/sock64";
 
             menugl.setOnClickListener(view -> {
                 installanduninstall();
