@@ -71,7 +71,7 @@ public class Overlay extends Service {
 					catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					Shell(MainActivity.daemon64);
+					//Shell(MainActivity.daemon64);
 				}
 			}).start();
         }

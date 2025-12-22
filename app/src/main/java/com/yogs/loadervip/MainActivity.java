@@ -2,6 +2,7 @@ package com.yogs.loadervip;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -75,34 +76,109 @@ public class MainActivity extends Activity {
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
-            daemon64 = this.getFilesDir() + "/sock64";
-
             updateState(menugl);
 
             menugl.setOnClickListener(view -> {
-                if (installanduninstall()) {
+                if (installanduninstall("com.tencent.ig")) {
                     updateState(menugl);
                 }
             });
 
             menugl1.setOnClickListener(view -> {
                 BlackBoxCore.get().launchApk("com.tencent.ig", 0);
-                startService(new Intent(MainActivity.this, FloatLogo.class));
+                if (!isServiceRunning()) {
+                    startService(new Intent(MainActivity.this, FloatLogo.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
+                }
             });
+
+            Button menukr = findViewById(R.id.menukr);
+            Button menukr1 = findViewById(R.id.menukr1);
+
+            updateState(menukr);
+
+            menukr.setOnClickListener(view -> {
+                if (installanduninstall("com.pubg.krmobile")) {
+                    updateState(menukr);
+                }
+            });
+
+            menukr1.setOnClickListener(view -> {
+                BlackBoxCore.get().launchApk("com.pubg.krmobile", 0);
+                if (!isServiceRunning()) {
+                    startService(new Intent(MainActivity.this, FloatLogo.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            Button menutw = findViewById(R.id.menukr);
+            Button menutw1 = findViewById(R.id.menukr1);
+
+            updateState(menutw);
+
+            menutw.setOnClickListener(view -> {
+                if (installanduninstall("com.rekoo.pubgm")) {
+                    updateState(menutw);
+                }
+            });
+
+            menutw1.setOnClickListener(view -> {
+                BlackBoxCore.get().launchApk("com.rekoo.pubgm", 0);
+                if (!isServiceRunning()) {
+                    startService(new Intent(MainActivity.this, FloatLogo.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            Button menuvng = findViewById(R.id.menuvng);
+            Button menuvng1 = findViewById(R.id.menuvng1);
+
+            updateState(menuvng);
+
+            menuvng.setOnClickListener(view -> {
+                if (installanduninstall("com.vng.pubgmobile")) {
+                    updateState(menuvng);
+                }
+            });
+
+            menuvng1.setOnClickListener(view -> {
+                BlackBoxCore.get().launchApk("com.vng.pubgmobile", 0);
+                if (!isServiceRunning()) {
+                    startService(new Intent(MainActivity.this, FloatLogo.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private boolean installanduninstall() {
-        if (BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
-            BlackBoxCore.get().uninstallPackageAsUser("com.tencent.ig", 0);
-            Toast.makeText(MainActivity.this, "Pubg Global Uninstalled", Toast.LENGTH_SHORT).show();
+    private boolean isServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        if (manager != null) {
+            for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+                if (FloatLogo.class.getName().equals(service.service.getClassName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean installanduninstall(String packageName) {
+        if (BlackBoxCore.get().isInstalled(packageName, 0)) {
+            BlackBoxCore.get().uninstallPackageAsUser(packageName, 0);
+            Toast.makeText(MainActivity.this, packageName + " Uninstalled", Toast.LENGTH_SHORT).show();
             return true;
         } else {
-            InstallResult installResult = BlackBoxCore.get().installPackageAsUser("com.tencent.ig", 0);
-            if (installResult.success || !BlackBoxCore.get().isInstalled("com.tencent.ig", 0)) {
-                Toast.makeText(MainActivity.this, "Pubg Global Installed", Toast.LENGTH_SHORT).show();
+            InstallResult installResult = BlackBoxCore.get().installPackageAsUser(packageName, 0);
+            if (installResult.success || !BlackBoxCore.get().isInstalled(packageName, 0)) {
+                Toast.makeText(MainActivity.this, packageName + " Installed", Toast.LENGTH_SHORT).show();
                 return true;
             }
         }

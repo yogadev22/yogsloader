@@ -5,79 +5,329 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Bagian Ikon (Kiri) -->
-        <LinearLayout
-            android:layout_width="45dp"
-            android:layout_height="47dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <!-- Bagian Teks (Tengah) - Mengambil sisa ruang -->
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:orientation="vertical">
+            android:text="YOGS LOADER"
+            android:gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:background="@color/design_default_color_primary_dark"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:text="PUBGM GLOBAL" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/colorPrimaryDark">
 
+            <!-- Bagian Ikon (Kiri) -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circlegl" />
+            </LinearLayout>
+
+            <!-- Bagian Teks (Tengah) - Mengambil sisa ruang -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    android:text="Status: " />
+                    android:textSize="18sp"
+                    android:text="GLOBAL" />
 
-                <TextView
-                    android:id="@+id/apkstatus"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/red"
-                    android:textSize="13sp"
-                    android:text="Not Installed" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:text="Status: " />
+
+                    <TextView
+                        android:id="@+id/apkstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="14sp"
+                        android:text="Not Safe" />
+                </LinearLayout>
             </LinearLayout>
+
+            <!-- Bagian Tombol (Kanan) -->
+            <Button
+                android:id="@+id/menugl"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="INSTALL"
+                android:textSize="13sp"
+                android:layout_marginRight="4dp"/>
+
+            <Button
+                android:id="@+id/menugl1"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="LAUNCH"
+                android:textSize="13sp" />
+
         </LinearLayout>
 
-        <!-- Bagian Tombol (Kanan) -->
-        <Button
-            android:id="@+id/menugl"
-            android:layout_width="90dp"
-            android:layout_height="43dp"
-            android:text="INSTALL"
-            android:textSize="13sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorPrimaryDark">
 
-        <Button
-            android:id="@+id/menugl1"
-            android:layout_width="90dp"
-            android:layout_height="43dp"
-            android:text="LAUNCH"
-            android:textSize="13sp"/>
+            <!-- Bagian Ikon (Kiri) -->
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/krcircle" />
+            </LinearLayout>
+
+            <!-- Bagian Teks (Tengah) - Mengambil sisa ruang -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:text="KOREA" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:text="Status: " />
+
+                    <TextView
+                        android:id="@+id/apkkrstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="14sp"
+                        android:text="Not Safe" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Bagian Tombol (Kanan) -->
+            <Button
+                android:id="@+id/menukr"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="INSTALL"
+                android:textSize="13sp"
+                android:layout_marginRight="4dp"/>
+
+            <Button
+                android:id="@+id/menukr1"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="LAUNCH"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorPrimaryDark">
+
+            <!-- Bagian Ikon (Kiri) -->
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circletw" />
+            </LinearLayout>
+
+            <!-- Bagian Teks (Tengah) - Mengambil sisa ruang -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:text="TAIWAN" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:text="Status: " />
+
+                    <TextView
+                        android:id="@+id/apktwstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="14sp"
+                        android:text="Not Safe" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Bagian Tombol (Kanan) -->
+            <Button
+                android:id="@+id/menutw"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="INSTALL"
+                android:textSize="13sp"
+                android:layout_marginRight="4dp"/>
+
+            <Button
+                android:id="@+id/menutw1"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="LAUNCH"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorPrimaryDark">
+
+            <!-- Bagian Ikon (Kiri) -->
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circlevn" />
+            </LinearLayout>
+
+            <!-- Bagian Teks (Tengah) - Mengambil sisa ruang -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:text="VIETNAM" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:text="Status: " />
+
+                    <TextView
+                        android:id="@+id/apkvngstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="14sp"
+                        android:text="Not Safe" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Bagian Tombol (Kanan) -->
+            <Button
+                android:id="@+id/menuvng"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="INSTALL"
+                android:textSize="13sp"
+                android:layout_marginRight="4dp"/>
+
+            <Button
+                android:id="@+id/menuvng1"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:text="LAUNCH"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
