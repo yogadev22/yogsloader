@@ -146,7 +146,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    isPremium = true;
     uintptr_t base = getBase();
 
 	Vec3 exyz;
