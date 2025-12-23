@@ -249,5 +249,4 @@ public class MainActivity extends Activity {
         stopService(new Intent(MainActivity.this, FloatLogo.class));
         stopService(new Intent(MainActivity.this, FloatAim.class));
     }
-
 }

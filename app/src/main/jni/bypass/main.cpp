@@ -57,7 +57,7 @@ TDRVIP(int, THUNDERMOD, (int a1, int a2, int a3)) {
     return socket(a1, a2, a3);
 }
 
-__int64 __fastcall sub_3A564C(__int64 a1, unsigned __int64 a2, void *a3, double a4) {
+__int64_t __fastcall sub_3A564C(__int64_t a1, __int64_t a2, void *a3, double a4) {
     return 0LL;
 }
 
