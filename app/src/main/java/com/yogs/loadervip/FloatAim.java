@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.lsposed.lsparanoid.Obfuscate;
+
+@Obfuscate
 public class FloatAim extends Service {
 
 	private boolean checkStatus;

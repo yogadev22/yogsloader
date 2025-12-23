@@ -12,8 +12,12 @@ import android.os.IBinder;
 import android.view.Gravity;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
+
+import org.lsposed.lsparanoid.Obfuscate;
+
 import java.io.IOException;
 
+@Obfuscate
 public class Overlay extends Service {
 
     @Override

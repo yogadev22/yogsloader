@@ -25,6 +25,9 @@ import android.graphics.Matrix;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import org.lsposed.lsparanoid.Obfuscate;
+
+@Obfuscate
 public class ESPView extends View implements Runnable {
 
     private Paint boxFillPaint,

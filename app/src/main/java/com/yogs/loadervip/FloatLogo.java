@@ -27,8 +27,9 @@ import android.widget.TextView;
 import android.animation.ObjectAnimator;
 import android.widget.Toast;
 
+import org.lsposed.lsparanoid.Obfuscate;
 
-
+@Obfuscate
 public class FloatLogo extends Service {
 
     private WindowManager mWindowManager;
