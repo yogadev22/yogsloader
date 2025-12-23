@@ -75,6 +75,12 @@ public class MainActivity extends Activity {
                 requestUnknownAppPermissionsDirect();
             }
 
+            if (Shell.rootAccess()) {
+                daemon64 = "su -c " + getApplicationInfo().nativeLibraryDir + "/libsock64.so";
+            } else {
+                daemon64 = getApplicationInfo().nativeLibraryDir + "/libsock64.so";
+            }
+
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
 
@@ -162,7 +168,6 @@ public class MainActivity extends Activity {
                     Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
                 }
             });
-
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -242,6 +247,7 @@ public class MainActivity extends Activity {
         super.onDestroy();
         stopService(new Intent(MainActivity.this, Overlay.class));
         stopService(new Intent(MainActivity.this, FloatLogo.class));
+        stopService(new Intent(MainActivity.this, FloatAim.class));
     }
 
 }
