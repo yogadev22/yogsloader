@@ -192,7 +192,7 @@ int main(int argc, char *argv[]) {
 
             response.fov = tanf(CameraCache.POV.FOV * ((float) PI / 360.0f));
             
-            if (getF(pBase + 0x26c8) == 479.5f) {
+            if (getF(pBase + 0x2a68) == 479.5f) {
 
 				PlayerData *data = &response.Players[response.PlayerCount];
 

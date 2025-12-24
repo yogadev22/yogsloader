@@ -30,11 +30,16 @@ import androidx.navigation.ui.NavigationUI;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.lsposed.lsparanoid.Obfuscate;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import com.topjohnwu.superuser.Shell;
 
@@ -53,6 +58,7 @@ public class MainActivity extends Activity {
     private static final int REQUEST_MANAGE_STORAGE_PERMISSION = 100;
     private static final int REQUEST_MANAGE_UNKNOWN_APP_SOURCES = 200;
     public static String daemon64;
+    private String daemonPath64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +81,37 @@ public class MainActivity extends Activity {
                 requestUnknownAppPermissionsDirect();
             }
 
+            TextView mode = findViewById(R.id.mode);
+            LinearLayout menuloader = findViewById(R.id.menuloader);
+
+            loadAssets64();
+
             if (Shell.rootAccess()) {
-                daemon64 = "su -c " + getApplicationInfo().nativeLibraryDir + "/libsock64.so";
+                mode.setText("ROOT");
+                daemon64 = "su -c " + daemonPath64;
+                menuloader.setVisibility(View.GONE);
             } else {
-                daemon64 = getApplicationInfo().nativeLibraryDir + "/libsock64.so";
+                mode.setText("LOADER");
+                daemon64 = daemonPath64;
+                menuloader.setVisibility(View.VISIBLE);
             }
+
+            LinearLayout startBtn = findViewById(R.id.startbtn);
+            LinearLayout stopBtn = findViewById(R.id.stopbtn);
+
+            startBtn.setOnClickListener(view -> {
+                if (!isServiceRunning()) {
+                    startService(new Intent(MainActivity.this, FloatLogo.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            stopBtn.setOnClickListener(view -> {
+                stopService(new Intent(MainActivity.this, Overlay.class));
+                stopService(new Intent(MainActivity.this, FloatLogo.class));
+                stopService(new Intent(MainActivity.this, FloatAim.class));
+            });
 
             Button menugl = findViewById(R.id.menugl);
             Button menugl1 = findViewById(R.id.menugl1);
@@ -95,12 +127,6 @@ public class MainActivity extends Activity {
             menugl1.setOnClickListener(view -> {
                 if (!Shell.rootAccess())
                     BlackBoxCore.get().launchApk("com.tencent.ig", 0);
-
-                if (!isServiceRunning()) {
-                    startService(new Intent(MainActivity.this, FloatLogo.class));
-                } else {
-                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
-                }
             });
 
             Button menukr = findViewById(R.id.menukr);
@@ -117,12 +143,6 @@ public class MainActivity extends Activity {
             menukr1.setOnClickListener(view -> {
                 if (!Shell.rootAccess())
                     BlackBoxCore.get().launchApk("com.pubg.krmobile", 0);
-
-                if (!isServiceRunning()) {
-                    startService(new Intent(MainActivity.this, FloatLogo.class));
-                } else {
-                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
-                }
             });
 
             Button menutw = findViewById(R.id.menutw);
@@ -139,12 +159,6 @@ public class MainActivity extends Activity {
             menutw1.setOnClickListener(view -> {
                 if (!Shell.rootAccess())
                     BlackBoxCore.get().launchApk("com.rekoo.pubgm", 0);
-
-                if (!isServiceRunning()) {
-                    startService(new Intent(MainActivity.this, FloatLogo.class));
-                } else {
-                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
-                }
             });
 
             Button menuvng = findViewById(R.id.menuvng);
@@ -161,12 +175,6 @@ public class MainActivity extends Activity {
             menuvng1.setOnClickListener(view -> {
                 if (!Shell.rootAccess())
                     BlackBoxCore.get().launchApk("com.vng.pubgmobile", 0);
-
-                if (!isServiceRunning()) {
-                    startService(new Intent(MainActivity.this, FloatLogo.class));
-                } else {
-                    Toast.makeText(MainActivity.this, "Service is already running", Toast.LENGTH_SHORT).show();
-                }
             });
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -239,6 +247,30 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, REQUEST_MANAGE_UNKNOWN_APP_SOURCES);
+        }
+    }
+
+    private void loadAssets64() {
+        String filesDir = getFilesDir().toString() + "/sock64";
+        try {
+            OutputStream myOutput = new FileOutputStream(filesDir);
+            byte[] buffer = new byte[1024];
+            int length;
+            InputStream myInput = getAssets().open("sock64");
+            while ((length = myInput.read(buffer)) != -1) {
+                myOutput.write(buffer, 0, length);
+            }
+            myInput.close();
+            myOutput.flush();
+            myOutput.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        daemonPath64 = getFilesDir().toString() + "/sock64";
+        try {
+            Runtime.getRuntime().exec("chmod 777 " + daemonPath64);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
